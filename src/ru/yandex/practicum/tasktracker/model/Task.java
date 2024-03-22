@@ -26,7 +26,6 @@ public class Task {
         return status;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
