@@ -2,18 +2,22 @@ package ru.yandex.practicum.tasktracker.model;
 
 public class Subtask extends Task {
 
-    int epicId;
+    private int epicIdForThisSubtask;
 
-    public Subtask(String name, String description, TaskStatus status, int epicId) {
-        super(name, description, status);
-        this.epicId = epicId;
+    public Subtask(String name, String description) {
+        super(name, description, TaskStatus.NEW);
+        epicIdForThisSubtask = 0;
     }
 
-    public int getEpicId() {
-        return epicId;
+    public int getEpicIdForThisSubtask() {
+        return epicIdForThisSubtask;
     }
 
-    public void setEpicId(int epicId) {
-        this.epicId = epicId;
+    public void setEpicIdForThisSubtask(int id) {
+        if (epicIdForThisSubtask == 0) {
+            epicIdForThisSubtask = id;
+        } else {
+            System.out.println("У данной подзадачи уже есть Эпик");
+        }
     }
 }
