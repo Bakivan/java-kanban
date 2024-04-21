@@ -18,8 +18,8 @@ class InMemoryTaskManagerTest {
 
     @Test
     void equalsTwoTasksWithOneId() {
-        Task taskOne = new Task("Task1", "Desc1", TaskStatus.NEW);
-        Task taskTwo = new Task("Task2", "Desc2", TaskStatus.IN_PROGRESS);
+        Task taskOne = new Task();
+        Task taskTwo = new Task();
 
         taskOne.setId(1);
         taskTwo.setId(1);
@@ -30,8 +30,8 @@ class InMemoryTaskManagerTest {
 
     @Test
     void equalsTwoEpicsWithOneId() {
-        Epic epicOne = new Epic("epic1", "Desc1");
-        Epic epicTwo = new Epic("epic2", "Desc2");
+        Epic epicOne = new Epic();
+        Epic epicTwo = new Epic();
 
         epicOne.setId(1);
         epicTwo.setId(1);
@@ -42,8 +42,8 @@ class InMemoryTaskManagerTest {
 
     @Test
     void equalsTwoSubtaskWithOneId() {
-        Subtask subtaskOne = new Subtask("Subtask1", "Desc1");
-        Subtask subtaskTwo = new Subtask("Subtask2", "Desc2");
+        Subtask subtaskOne = new Subtask();
+        Subtask subtaskTwo = new Subtask();
 
         subtaskOne.setId(1);
         subtaskTwo.setId(1);
@@ -55,8 +55,8 @@ class InMemoryTaskManagerTest {
     @Test
     void addNewTask() {
         TaskManager taskManager = Managers.getDefault();
-        Task task = new Task("Test addNewTask", "Test addNewTask description", TaskStatus.NEW);
-        taskManager.saveTask(task);
+        Task task = new Task();
+        taskManager.createTask(task);
 
         final int taskId = task.getId();
 
@@ -75,8 +75,8 @@ class InMemoryTaskManagerTest {
     @Test
     void addNewSubtask() {
         TaskManager taskManager = Managers.getDefault();
-        Epic epic = new Epic("Test addNewEpic", "Test addNewEpic description");
-        taskManager.saveEpic(epic);
+        Epic epic = new Epic();
+        taskManager.createEpic(epic);
 
         final int epicId = epic.getId();
 

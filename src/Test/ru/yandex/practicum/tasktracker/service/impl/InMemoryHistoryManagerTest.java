@@ -16,7 +16,7 @@ class InMemoryHistoryManagerTest {
     @Test
     void checkSizeOfRequestHistory() {
         HistoryManager historyManager = Managers.getDefaultHistory();
-        Task task = new Task("title", "desc", TaskStatus.NEW);
+        Task task = new Task();
         final int sizeFromRequestHistoryShouldBe = 10;
         final int sizeForCheckRequestSize = 19;
         for (int i = 0; i <= sizeForCheckRequestSize; i++) {
@@ -31,7 +31,7 @@ class InMemoryHistoryManagerTest {
     @Test
     void add() {
         HistoryManager historyManager = Managers.getDefaultHistory();
-        Task task = new Task("Test addNewTask", "Test addNewTask description", TaskStatus.NEW);
+        Task task = new Task();
         historyManager.addToHistory(task);
         final List<Task> history = historyManager.getHistory();
         assertNotNull(history, "История не пустая.");

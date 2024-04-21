@@ -14,11 +14,11 @@ public class Main {
         System.out.println("Поехали!");
         TaskManager inMemoryTaskManager = Managers.getDefault();
 
-        Task task1 = new Task("Task1", "Desc1", TaskStatus.NEW);
-        Task task2 = new Task("Task2", "Desc2", TaskStatus.NEW);
+        Task task1 = new Task();
+        Task task2 = new Task();
 
-        inMemoryTaskManager.saveTask(task1);
-        inMemoryTaskManager.saveTask(task2);
+        inMemoryTaskManager.createTask(task1);
+        inMemoryTaskManager.createTask(task2);
 
         System.out.println(inMemoryTaskManager.getTasks());
         System.out.println();
@@ -33,25 +33,22 @@ public class Main {
         inMemoryTaskManager.updateTask(task2Clone);
 
         System.out.println(inMemoryTaskManager.getTasks());
-        System.out.println(inMemoryTaskManager.getHistory());
+        System.out.println(inMemoryTaskManager.getHistoryManager());
 
-        Epic epic1 = new Epic("Epic1", "Desc1");
-        Epic epic2 = new Epic("Epic2", "Desc2");
+        Epic epic1 = new Epic();
+        Epic epic2 = new Epic();
 
-        Subtask subtask1 = new Subtask("Subtask1", "Desk1");
-        Subtask subtask2 = new Subtask("Subtask2", "Desk2");
-        Subtask subtask3 = new Subtask("Subtask3", "Desk3");
+        Subtask subtask1 = new Subtask();
+        Subtask subtask2 = new Subtask();
+        Subtask subtask3 = new Subtask();
 
 
-        inMemoryTaskManager.saveEpic(epic1);
-        inMemoryTaskManager.saveEpic(epic2);
-        subtask1.setEpicIdForThisSubtask(epic1.getId());
-        subtask2.setEpicIdForThisSubtask(epic1.getId());
-        subtask3.setEpicIdForThisSubtask(epic2.getId());
+        inMemoryTaskManager.createEpic(epic1);
+        inMemoryTaskManager.createEpic(epic2);
 
-        inMemoryTaskManager.saveSubtask(subtask1);
-        inMemoryTaskManager.saveSubtask(subtask2);
-        inMemoryTaskManager.saveSubtask(subtask3);
+        inMemoryTaskManager.createSubtask(subtask1);
+        inMemoryTaskManager.createSubtask(subtask2);
+        inMemoryTaskManager.createSubtask(subtask3);
 
         System.out.println(inMemoryTaskManager.getSubtasks());
         System.out.println();
@@ -68,11 +65,11 @@ public class Main {
         System.out.println(inMemoryTaskManager.getSubtasks());
         System.out.println();
 
-        inMemoryTaskManager.deleteSubtasks();
+        inMemoryTaskManager.clearSubtasks();
         System.out.println(inMemoryTaskManager.getEpics());
         System.out.println();
 
-        System.out.println(inMemoryTaskManager.getHistory());
+        System.out.println(inMemoryTaskManager.getHistoryManager());
 
     }
 

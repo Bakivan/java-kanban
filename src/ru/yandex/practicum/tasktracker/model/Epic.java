@@ -1,34 +1,15 @@
 package ru.yandex.practicum.tasktracker.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class Epic extends Task {
-    private final Map<Integer, Subtask> subtasksForThisEpic;
+    private ArrayList<Integer> subtaskIds = new ArrayList<>();
 
-    public Epic(String name, String description) {
-        super(name, description, TaskStatus.NEW);
-
-        subtasksForThisEpic = new HashMap<>();
+    public ArrayList<Integer> getSubtaskIds() {
+        return subtaskIds;
     }
 
-    public void addSubtasksForThisEpic(Subtask subtask) {
-        if (!subtasksForThisEpic.containsKey(subtask.getId())) {
-            subtasksForThisEpic.put(subtask.getId(), subtask);
-        } else {
-            System.out.println("Данная подзадача уже сохранена в Эпике");
-        }
-    }
-
-    public void deleteSubtaskForThisEpic(int id) {
-        if (subtasksForThisEpic.containsKey(id)) {
-            subtasksForThisEpic.remove(id);
-        } else {
-            System.out.println("У этого Эпика нет такой подзадачи");
-        }
-    }
-
-    public Map<Integer, Subtask> getSubtasksForThisEpic() {
-        return subtasksForThisEpic;
+    public void setSubtaskIds(ArrayList<Integer> subtaskIds) {
+        this.subtaskIds = subtaskIds;
     }
 }
