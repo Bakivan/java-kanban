@@ -8,20 +8,20 @@ import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
     private static final int SIZE_OF_REQUEST_HISTORY = 10;
-    private final List<Task> requestHistory = new LinkedList<>();
+    private final List<Task> history = new LinkedList<>();
 
     @Override
     public void addToHistory(Task task) {
         if (task != null) {
-            if (requestHistory.size() == SIZE_OF_REQUEST_HISTORY) {
-                requestHistory.removeFirst();
+            if (history.size() == SIZE_OF_REQUEST_HISTORY) {
+                history.removeFirst();
             }
-            requestHistory.add(task);
+            history.add(task);
         }
     }
 
     @Override
     public List<Task> getHistory() {
-        return List.copyOf(requestHistory);
+        return List.copyOf(history);
     }
 }

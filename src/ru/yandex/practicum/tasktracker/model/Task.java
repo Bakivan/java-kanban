@@ -2,7 +2,7 @@ package ru.yandex.practicum.tasktracker.model;
 
 import java.util.Objects;
 
-public class Task {
+public class Task implements Cloneable{
 
     private String name;
     private String description;
