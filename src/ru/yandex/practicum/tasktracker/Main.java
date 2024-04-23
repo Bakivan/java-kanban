@@ -23,15 +23,6 @@ public class Main {
         System.out.println(inMemoryTaskManager.getTasks());
         System.out.println();
 
-        Task task1Clone = (Task) task1.clone();
-        Task task2Clone = (Task) task2.clone();
-
-        task1Clone.setStatus(TaskStatus.IN_PROGRESS);
-        task2Clone.setStatus(TaskStatus.DONE);
-
-        inMemoryTaskManager.updateTask(task1Clone);
-        inMemoryTaskManager.updateTask(task2Clone);
-
         System.out.println(inMemoryTaskManager.getTasks());
         System.out.println(inMemoryTaskManager.getHistoryManager());
 
@@ -52,14 +43,6 @@ public class Main {
 
         System.out.println(inMemoryTaskManager.getSubtasks());
         System.out.println();
-
-        Subtask subtask1Clone = (Subtask) subtask1.clone();
-        Subtask subtask3Clone = (Subtask) subtask3.clone();
-
-        subtask1Clone.setStatus(TaskStatus.IN_PROGRESS);
-        subtask3Clone.setStatus(TaskStatus.DONE);
-        inMemoryTaskManager.updateSubtask(subtask1Clone);
-        inMemoryTaskManager.updateSubtask(subtask3Clone);
 
         System.out.println(inMemoryTaskManager.getEpics());
         System.out.println(inMemoryTaskManager.getSubtasks());

@@ -4,15 +4,15 @@ import ru.yandex.practicum.tasktracker.model.Epic;
 import ru.yandex.practicum.tasktracker.model.Subtask;
 import ru.yandex.practicum.tasktracker.model.Task;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface TaskManager {
 
-    ArrayList <Task> getTasks();
+    List <Task> getTasks();
 
-    ArrayList <Subtask> getSubtasks();
+    List <Subtask> getSubtasks();
 
-    ArrayList <Epic> getEpics();
+    List <Epic> getEpics();
 
     void createTask(Task task);
 
@@ -44,7 +44,7 @@ public interface TaskManager {
 
     Subtask getSubtaskById(int id);
 
-    ArrayList <Subtask> getSubtasksByEpicId(int epicId);
+    List <Subtask> getSubtasksByEpicId(int epicId);
 
     void changeEpicStatus(Epic epic);
 

@@ -2,7 +2,7 @@ package ru.yandex.practicum.tasktracker.model;
 
 import java.util.Objects;
 
-public class Task implements Cloneable{
+public class Task {
 
     private String name;
     private String description;
@@ -54,7 +54,7 @@ public class Task implements Cloneable{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {
@@ -67,14 +67,5 @@ public class Task implements Cloneable{
     @Override
     public int hashCode() {
         return Objects.hash(name, description, id, status);
-    }
-
-    @Override
-    public Object clone() {
-        try {
-            return super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
