@@ -3,10 +3,15 @@ package ru.yandex.practicum.tasktracker.service.impl;
 import ru.yandex.practicum.tasktracker.model.Task;
 import ru.yandex.practicum.tasktracker.service.HistoryManager;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class InMemoryHistoryManager implements HistoryManager {
-    private final Map<Integer, Node> requestHistory = new HashMap();
+    private final Map<Integer, Node> requestHistory = new HashMap<>();
     private Node head;
     private Node tail;
 
@@ -48,9 +53,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     private void removeNode(Node node) {
-        if (node == null) {
-            return;
-        } else {
+        if (node != null) {
             Node prev = node.getPrev();
             Node next = node.getNext();
 
@@ -72,7 +75,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 
-    private static class Node {
+    public static class Node {
         public Task task;
         public Node next;
         public Node prev;
