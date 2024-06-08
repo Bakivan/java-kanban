@@ -75,10 +75,10 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 
-    public static class Node {
-        public Task task;
-        public Node next;
-        public Node prev;
+    private static class Node {
+        private Task task;
+        private Node next;
+        private Node prev;
 
         public Node(Node prev, Task task, Node next) {
             this.prev = prev;
