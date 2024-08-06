@@ -14,17 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class InMemoryHistoryManagerTest {
 
     @Test
-    void checkSizeOfRequestHistory() {
+    void checkForDuplicationInHistory() {
         HistoryManager historyManager = Managers.getDefaultHistory();
         Task task = new Task("title", "desc", TaskStatus.NEW);
-        final int sizeFromRequestHistoryShouldBe = 10;
         final int sizeForCheckRequestSize = 19;
         for (int i = 0; i <= sizeForCheckRequestSize; i++) {
             historyManager.addToHistory(task);
         }
         List<Task> exampleOfRequestHistoryList = historyManager.getHistory();
 
-        assertEquals(sizeFromRequestHistoryShouldBe, exampleOfRequestHistoryList.size(), "Ограничение листа "
+        assertEquals(1, exampleOfRequestHistoryList.size(), "Ограничение дублирования "
                 + "не работает");
     }
 
