@@ -44,6 +44,7 @@ public class Task {
     public void setId(int id) {
         this.id = id;
     }
+
     public TypeOfTask getTypeOfTask() {
         return type;
     }
@@ -81,6 +82,7 @@ public class Task {
     public int hashCode() {
         return Objects.hash(name, description, id, status);
     }
+
     @Override
     public Object clone() {
         try {
