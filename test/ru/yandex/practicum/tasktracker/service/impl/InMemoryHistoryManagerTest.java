@@ -2,6 +2,7 @@ package ru.yandex.practicum.tasktracker.service.impl;
 
 import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.tasktracker.model.Task;
+import ru.yandex.practicum.tasktracker.model.TaskStatus;
 import ru.yandex.practicum.tasktracker.service.HistoryManager;
 import ru.yandex.practicum.tasktracker.utilities.Managers;
 
@@ -15,7 +16,7 @@ class InMemoryHistoryManagerTest {
     @Test
     void checkSizeOfRequestHistory() {
         HistoryManager historyManager = Managers.getDefaultHistory();
-        Task task = new Task();
+        Task task = new Task("title", "desc", TaskStatus.NEW);
         final int sizeFromRequestHistoryShouldBe = 10;
         final int sizeForCheckRequestSize = 19;
         for (int i = 0; i <= sizeForCheckRequestSize; i++) {
@@ -30,11 +31,20 @@ class InMemoryHistoryManagerTest {
     @Test
     void add() {
         HistoryManager historyManager = Managers.getDefaultHistory();
-        Task task = new Task();
+        Task task = new Task("Test addNewTask", "Test addNewTask description", TaskStatus.NEW);
         historyManager.addToHistory(task);
         final List<Task> history = historyManager.getHistory();
         assertNotNull(history, "История не пустая.");
         assertEquals(1, history.size(), "История не пустая.");
+    }
+    @Test
+    void delete() {
+        HistoryManager historyManager = Managers.getDefaultHistory();
+        Task task = new Task("Test addNewTask", "Test addNewTask description", TaskStatus.NEW);
+        historyManager.addToHistory(task);
+        historyManager.removeFromHistory(task.getId());
+        final List<Task> history = historyManager.getHistory();
+        assertEquals(0, history.size(), "История не пустая.");
     }
 
 }

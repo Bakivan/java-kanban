@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.tasktracker.model.Epic;
 import ru.yandex.practicum.tasktracker.model.Subtask;
 import ru.yandex.practicum.tasktracker.model.Task;
+import ru.yandex.practicum.tasktracker.model.TaskStatus;
 import ru.yandex.practicum.tasktracker.service.TaskManager;
 import ru.yandex.practicum.tasktracker.utilities.Managers;
 
@@ -17,8 +18,8 @@ class InMemoryTaskManagerTest {
 
     @Test
     void equalsTwoTasksWithOneId() {
-        Task taskOne = new Task();
-        Task taskTwo = new Task();
+        Task taskOne = new Task("Task1", "Desc1", TaskStatus.NEW);
+        Task taskTwo = new Task("Task2", "Desc2", TaskStatus.IN_PROGRESS);
 
         taskOne.setId(1);
         taskTwo.setId(1);
@@ -29,8 +30,8 @@ class InMemoryTaskManagerTest {
 
     @Test
     void equalsTwoEpicsWithOneId() {
-        Epic epicOne = new Epic();
-        Epic epicTwo = new Epic();
+        Epic epicOne = new Epic("epic1", "Desc1");
+        Epic epicTwo = new Epic("epic2", "Desc2");
 
         epicOne.setId(1);
         epicTwo.setId(1);
@@ -41,8 +42,8 @@ class InMemoryTaskManagerTest {
 
     @Test
     void equalsTwoSubtaskWithOneId() {
-        Subtask subtaskOne = new Subtask();
-        Subtask subtaskTwo = new Subtask();
+        Subtask subtaskOne = new Subtask("Subtask1", "Desc1");
+        Subtask subtaskTwo = new Subtask("Subtask2", "Desc2");
 
         subtaskOne.setId(1);
         subtaskTwo.setId(1);
@@ -54,8 +55,8 @@ class InMemoryTaskManagerTest {
     @Test
     void addNewTask() {
         TaskManager taskManager = Managers.getDefault();
-        Task task = new Task();
-        taskManager.createTask(task);
+        Task task = new Task("Test addNewTask", "Test addNewTask description", TaskStatus.NEW);
+        taskManager.saveTask(task);
 
         final int taskId = task.getId();
 
@@ -72,10 +73,10 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void addNewSubtask() {
+    void addNewEpic() {
         TaskManager taskManager = Managers.getDefault();
-        Epic epic = new Epic();
-        taskManager.createEpic(epic);
+        Epic epic = new Epic("Test addNewEpic", "Test addNewEpic description");
+        taskManager.saveEpic(epic);
 
         final int epicId = epic.getId();
 
@@ -91,5 +92,22 @@ class InMemoryTaskManagerTest {
         assertEquals(epic, epics.getFirst(), "Задачи не совпадают.");
     }
 
+    @Test
+    void deleteSubtask() {
+        TaskManager taskManager = Managers.getDefault();
+        Epic epic = new Epic("Test addNewEpic", "Test addNewEpic description");
+        Subtask subtask = new Subtask("Subtask1", "Desk1");
 
+        taskManager.saveEpic(epic);
+        subtask.setEpicIdForThisSubtask(epic.getId());
+
+        taskManager.saveSubtask(subtask);
+
+        taskManager.deleteById(epic.getId());
+        final int checkSubtasksListSize = taskManager.getSubtasks().size();
+
+        assertEquals(0, checkSubtasksListSize, "После удаления эпика подзадача "
+                + "не удалилась");
+    }
 }
+

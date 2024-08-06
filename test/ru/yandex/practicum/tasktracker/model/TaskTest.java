@@ -14,8 +14,8 @@ class TaskTest {
     @Test
     void addNewTask() {
         TaskManager taskManager = Managers.getDefault();
-        Task task = new Task();
-        taskManager.createTask(task);
+        Task task = new Task("Test addNewTask", "Test addNewTask description", TaskStatus.NEW);
+        taskManager.saveTask(task);
         final int taskId = task.getId();
 
         final Task savedTask = taskManager.getTaskById(taskId);

@@ -8,6 +8,10 @@ public class Task {
     private String description;
     private TaskStatus status;
     private int id;
+    private TypeOfTask type;
+
+    public Task(String name, String description, TaskStatus status) {
+    }
 
     public String getName() {
         return name;
@@ -40,6 +44,15 @@ public class Task {
     public void setId(int id) {
         this.id = id;
     }
+    public TypeOfTask getTypeOfTask() {
+        return type;
+    }
+
+    public void setTypeOfTask(TypeOfTask typeOfTask) {
+        this.type = typeOfTask;
+    }
+
+
 
     @Override
     public String toString() {
@@ -67,5 +80,13 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(name, description, id, status);
+    }
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
